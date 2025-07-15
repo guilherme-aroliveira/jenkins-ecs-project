@@ -1,0 +1,43 @@
+name: Terraform workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    types:
+      - closed
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  scan:
+    uses: guilherme-aroliveira/gh-workflows/.github/workflows/gitleaks.yaml@main
+
+  lint:
+    needs: scan
+    uses: guilherme-aroliveira/gh-workflows/.github/workflows/tf-lint.yaml@main
+    with:
+      working_directory: './terraform/environment/'
+      tf_version: '1.12.2'
+
+  plan:
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+    needs: lint
+    uses: guilherme-aroliveira/gh-workflows/.github/workflows/tf-plan.yaml@main
+    with:
+      working_directory: './terraform/environment/'
+      tf_version: '1.12.2'
+    secrets:
+      ASSUME_ROLE: ${{ secrets.ROLE_TO_ASSUME }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+      AWS_BUCKET_KEY: ${{ secrets.AWS_BUCKET_KEY }}
+      S3_LOCK: ${{ secrets.S3_LOCK }}
