@@ -30,6 +30,7 @@ module "ecs" {
   vpc_id             = module.vpc.vpc_id
   public_subnets     = module.vpc.public_subnets
   private_subnets    = module.vpc.private_subnets
+  jenkins_service_sg = module.ec2.jenkins_service_sg
   jenkins_tg         = module.ec2.jenkins_tg
   ecr_uri            = module.ecr.ecr_uri
   ecs_jenkins_logs   = module.cloudwatch.ecs_jenkins_logs

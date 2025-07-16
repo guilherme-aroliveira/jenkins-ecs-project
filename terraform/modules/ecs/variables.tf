@@ -11,6 +11,10 @@ variable "private_subnets" {
   description = "IDs of the private subnets"
 }
 
+variable "jenkins_service_sg" {
+  description = "ECS Jenkins service security group"
+}
+
 variable "ecs_jenkins_logs" {
   description = "Jenkins ECS cloudwatch log group"
 }

@@ -1,5 +1,6 @@
 resource "aws_ecr_repository" "ecr_repo" {
-  name                 = toset(var.image_name)
+  for_each             = toset(var.image_name)
+  name                 = each.key
   image_tag_mutability = "MUTABLE"
 
   encryption_configuration {
@@ -23,7 +24,7 @@ resource "aws_ecr_repository" "ecr_repo" {
 }
 
 resource "aws_ecr_lifecycle_policy" "ecr_repo_lifecycle" {
-  for_each = aws_ecr_repository.ecr_repo
+  for_each   = aws_ecr_repository.ecr_repo
   repository = each.value.name
 
   policy = jsonencode({
@@ -32,13 +33,13 @@ resource "aws_ecr_lifecycle_policy" "ecr_repo_lifecycle" {
         action = {
           type = "string"
         }
-        description = "Expire unstagged images"
+        description  = "Expire unstagged images"
         rulePriprity = 1
         selection = {
           countNumber = 1
-          countType = "sinceImagePushed"
-          countUnit = "days"
-          tagStatus = "untagged"
+          countType   = "sinceImagePushed"
+          countUnit   = "days"
+          tagStatus   = "untagged"
         }
       }
     ]

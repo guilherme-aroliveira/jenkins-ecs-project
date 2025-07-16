@@ -24,7 +24,7 @@ resource "aws_ecs_service" "ecs_service_jenkins" {
 
   network_configuration {
     subnets          = var.private_subnets
-    security_groups  = [aws_security_group.sg_ecs_service.id]
+    security_groups  = ["${var.jenkins_service_sg}".id]
     assign_public_ip = false
   }
 
@@ -36,5 +36,5 @@ resource "aws_ecs_service" "ecs_service_jenkins" {
 
   enable_execute_command = true
 
-  depends_on = [aws_ecs_cluster.ecs_cluster]
+  depends_on = [aws_ecs_cluster.ecs_cluster_jenkins]
 }
