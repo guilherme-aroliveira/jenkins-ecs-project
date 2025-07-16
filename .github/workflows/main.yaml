@@ -36,7 +36,7 @@ jobs:
       working_directory: './terraform/environment/'
       tf_version: '1.12.2'
     secrets:
-      ASSUME_ROLE: ${{ secrets.ROLE_TO_ASSUME }}
+      AWS_ASSUME_ROLE: ${{ secrets.AWS_ASSUME_ROLE }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       AWS_BUCKET_KEY: ${{ secrets.AWS_BUCKET_KEY }}
