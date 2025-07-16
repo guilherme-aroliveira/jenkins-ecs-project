@@ -14,7 +14,7 @@ resource "aws_security_group" "sg_ecs_service" {
 
 resource "aws_vpc_security_group_ingress_rule" "sg_jenkins_controller_ingress" {
   security_group_id            = aws_security_group.sg_ecs_service.id
-  referenced_security_group_id = aws_security_group.public_sg.id
+  referenced_security_group_id = aws_security_group.public_lb_sg.id
   from_port                    = 8080
   to_port                      = 8080
   ip_protocol                  = "tcp"
