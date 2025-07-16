@@ -3,7 +3,7 @@ resource "aws_instance" "bastion_host" {
   ami                    = data.aws_ami.ami_debian.id
   instance_type          = "t3.micro"
   key_name               = aws_key_pair.rsa_key_bastion.key_name
-  vpc_security_group_ids = var.bastion_sg
+  vpc_security_group_ids = [var.bastion_sg]
   subnet_id              = var.public_subnets[0]
   ebs_optimized          = true
 

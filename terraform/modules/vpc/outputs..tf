@@ -20,7 +20,7 @@ output "private_subnets" {
 
 output "public_lb_sg" {
   description = "Public Load Balancer security group"
-  value = aws_security_group.public_lb_sg.id
+  value       = aws_security_group.public_lb_sg.id
 }
 
 output "jenkins_efs_sg" {
@@ -30,7 +30,7 @@ output "jenkins_efs_sg" {
 
 output "jenkins_service_sg" {
   description = "ECS Jenkins service security group"
-  value = aws_security_group.sg_ecs_service
+  value       = aws_security_group.sg_ecs_service
 }
 
 output "bastion_sg" {
