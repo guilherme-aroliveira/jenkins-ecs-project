@@ -3,7 +3,7 @@ resource "aws_lb" "public_lb" {
   name               = "public-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.public_sg.id]
+  security_groups    = var.public_lb_sg
   subnets            = var.public_subnets
 
   tags = merge(

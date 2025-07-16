@@ -26,6 +26,7 @@ module "elb" {
   vpc_id         = module.vpc.vpc_id
   vpc_cidr       = module.vpc.vpc_cidr
   public_subnets = module.vpc.public_subnets
+  public_lb_sg   = module.vpc.public_lb_sg
 }
 
 module "s3" {

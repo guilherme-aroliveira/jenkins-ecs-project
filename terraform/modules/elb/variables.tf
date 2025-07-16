@@ -9,3 +9,8 @@ variable "vpc_cidr" {
 variable "public_subnets" {
   description = "Public subnet IDs"
 }
+
+### Values from outputs ###
+variable "public_lb_sg" {
+  description = "Public Load Balancer security group"
+}

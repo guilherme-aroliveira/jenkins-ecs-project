@@ -18,6 +18,11 @@ output "private_subnets" {
   value       = [for subnet in aws_subnet.private_subnets : subnet.id]
 }
 
+output "public_lb_sg" {
+  description = "Public Load Balancer security group"
+  value = aws_security_group.public_lb_sg.id
+}
+
 output "jenkins_efs_sg" {
   description = "Jenkins efs security group"
   value       = aws_security_group.sg_efs_jenkins.id
