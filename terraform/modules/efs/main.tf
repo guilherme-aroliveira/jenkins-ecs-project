@@ -16,7 +16,7 @@ resource "aws_efs_mount_target" "efs_mount_target_jenkins" {
   for_each = var.private_subnets
 
   file_system_id  = aws_efs_file_system.efs_jenkins.id
-  subnet_id       = each.value
+  subnet_id       = each.value.id
   security_groups = var.jenkins_efs_sg
 }
 
