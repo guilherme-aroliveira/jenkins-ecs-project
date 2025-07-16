@@ -4,9 +4,9 @@ variable "environment" {
 }
 
 variable "image_name" {
-  description = "value"
+  description = "List of ECR repositories"
   type        = list(string)
-  default = [ 
+  default = [
     "jenkins-controller",
     "jenkins-agent"
   ]

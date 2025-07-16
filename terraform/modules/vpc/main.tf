@@ -8,7 +8,7 @@ resource "aws_vpc" "main_vpc" {
   tags = merge(
     local.tags,
     {
-      Name        = "main-vpc"
+      Name = "main-vpc"
     }
   )
 }
@@ -20,7 +20,7 @@ resource "aws_internet_gateway" "vpc_igw" {
   tags = merge(
     local.tags,
     {
-      Name        = "internet-gateway"
+      Name = "internet-gateway"
     }
   )
 }
@@ -41,7 +41,7 @@ resource "aws_eip" "nat_gateway_eip" {
   tags = merge(
     local.tags,
     {
-      Name        = "elastic-ip-nat-gateway"
+      Name = "elastic-ip-nat-gateway"
     }
   )
 }
@@ -56,7 +56,7 @@ resource "aws_nat_gateway" "nat_gateway" {
   tags = merge(
     local.tags,
     {
-      Name        = "nat-gateway"
+      Name = "nat-gateway"
     }
   )
 }
@@ -75,7 +75,7 @@ resource "aws_route_table" "public_route_table" {
   tags = merge(
     local.tags,
     {
-      Name        = "public-route-table"
+      Name = "public-route-table"
     }
   )
 }
@@ -92,7 +92,7 @@ resource "aws_route_table" "private_route_table" {
   tags = merge(
     local.tags,
     {
-      Name        = "private-route-table"
+      Name = "private-route-table"
     }
   )
 }
@@ -128,7 +128,7 @@ resource "aws_subnet" "public_subnets" {
   tags = merge(
     local.tags,
     {
-      Name        = each.key
+      Name = each.key
     }
   )
 }
@@ -144,7 +144,7 @@ resource "aws_subnet" "private_subnets" {
   tags = merge(
     local.tags,
     {
-      Name        = each.key
+      Name = each.key
     }
   )
 }

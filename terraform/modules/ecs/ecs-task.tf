@@ -36,7 +36,7 @@
     name = "home"
 
     efs_volume_configuration {
-      file_system_id     = var.efs_jenkins
+      file_system_id     = "${var.efs_jenkins}".id
       transit_encryption = "ENABLED"
 
       authorization_config {

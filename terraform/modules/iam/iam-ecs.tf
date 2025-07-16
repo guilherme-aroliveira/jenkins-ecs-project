@@ -85,7 +85,7 @@ data "aws_iam_policy_document" "ecs_access" {
       "ecs:ListContainerInstances"
     ]
     resources = [
-      aws_ecs_cluster.ecs_cluster_jenkins.arn
+      "${var.ecs_cluster_jenkins}".arn
     ]
   }
 
@@ -103,7 +103,7 @@ data "aws_iam_policy_document" "ecs_access" {
       variable = "ecs:cluster"
 
       values = [
-        aws_ecs_cluster.ecs_cluster_jenkins.arn
+        "${var.ecs_cluster_jenkins}".arn
       ]
     }
   }

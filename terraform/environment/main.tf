@@ -2,6 +2,7 @@ module "iam" {
   source              = "../modules/iam"
   ecs_cluster_jenkins = module.ecs.ecs_cluster_jenkins
   ecs_service_jenkins = module.ecs.ecs_service_jenkins
+  efs_jenkins         = module.efs.efs_jenkins
 }
 
 module "cloudwatch" {
@@ -42,4 +43,5 @@ module "efs" {
   source                 = "../modules/efs"
   private_subnets        = module.vpc.private_subnets
   iam_efs_jenkins_policy = module.iam.iam_efs_jenkins_policy
+  jenkins_efs_sg         = module.ec2.jenkins_efs_sg
 }

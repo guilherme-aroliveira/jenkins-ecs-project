@@ -1,8 +1,15 @@
 ### ECS security group for Jenkins controller
 
 resource "aws_security_group" "sg_ecs_service" {
-  name   = "ecs-jenkins-controller"
+  name   = "ecs-jenkins-controller-sg"
   vpc_id = var.vpc_id
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "ecs-jenkins-controller-sg"
+    }
+  )
 }
 
 resource "aws_vpc_security_group_ingress_rule" "sg_jenkins_controller_ingress" {
@@ -25,8 +32,15 @@ resource "aws_vpc_security_group_egress_rule" "sg_jenkins_controller_egress" {
 ### ECS security group for Jenkins agents
 
 resource "aws_security_group" "sg_ecs_jenkins_agent" {
-  name   = "ecs-jenkins-agents"
+  name   = "ecs-jenkins-agents-sg"
   vpc_id = var.vpc_id
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "ecs-jenkins-agents-sg"
+    }
+  )
 }
 
 resource "aws_vpc_security_group_ingress_rule" "sg_jenkins_agent_ingress" {

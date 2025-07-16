@@ -17,13 +17,14 @@ resource "aws_ecr_repository" "ecr_repo" {
   tags = merge(
     local.tags,
     {
-      Name = "jenkins-ecr-ecs"
+      Name = each.key
     }
   )
 }
 
 resource "aws_ecr_lifecycle_policy" "ecr_repo_lifecycle" {
-  repository = aws_ecr_repository.ecr_repo.name
+  for_each = aws_ecr_repository.ecr_repo
+  repository = each.value.name
 
   policy = jsonencode({
     rules = [

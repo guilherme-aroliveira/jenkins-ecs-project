@@ -17,7 +17,7 @@ resource "aws_efs_mount_target" "efs_mount_target_jenkins" {
 
   file_system_id  = aws_efs_file_system.efs_jenkins.id
   subnet_id       = each.value
-  security_groups = [aws_security_group.sg_efs_jenkins.id]
+  security_groups = var.jenkins_efs_sg
 }
 
 resource "aws_efs_access_point" "efs_access_point_jenkins" {

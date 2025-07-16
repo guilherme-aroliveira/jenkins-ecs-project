@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "iam_efs_jenkins_policy" {
     effect = "Allow"
 
     resources = [
-      aws_efs_file_system.efs_jenkins.arn
+      "${var.efs_jenkins}".arn
     ]
 
     principals {
@@ -42,7 +42,7 @@ data "aws_iam_policy_document" "efs_access" {
     ]
 
     resources = [
-      aws_efs_file_system.efs_jenkins.arn
+      "${var.efs_jenkins}".arn
     ]
   }
 }

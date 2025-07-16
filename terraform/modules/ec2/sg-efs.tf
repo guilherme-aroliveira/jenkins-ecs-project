@@ -1,6 +1,13 @@
 resource "aws_security_group" "sg_efs_jenkins" {
-  name   = "sg-efs-jenkins"
+  name   = "efs-jenkins-sg"
   vpc_id = var.vpc_id
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "efs-jenkins-sg"
+    }
+  )
 }
 
 resource "aws_vpc_security_group_ingress_rule" "sg_ecs_jenkins_ingress" {
