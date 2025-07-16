@@ -17,3 +17,18 @@ output "private_subnets" {
   description = "IDs of the private subnets"
   value       = [for subnet in aws_subnet.private_subnets : subnet.id]
 }
+
+output "jenkins_efs_sg" {
+  description = "Jenkins efs security group"
+  value       = aws_security_group.sg_efs_jenkins.id
+}
+
+output "jenkins_service_sg" {
+  description = "ECS Jenkins service security group"
+  value = aws_security_group.sg_ecs_service
+}
+
+output "bastion_sg" {
+  description = "Bastion Host Security Group"
+  value       = aws_security_group.sg_bastion.id
+}

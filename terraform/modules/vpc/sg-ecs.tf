@@ -2,7 +2,7 @@
 
 resource "aws_security_group" "sg_ecs_service" {
   name   = "ecs-jenkins-controller-sg"
-  vpc_id = var.vpc_id
+  vpc_id = aws_vpc.main_vpc.id
 
   tags = merge(
     local.tags,
@@ -33,7 +33,7 @@ resource "aws_vpc_security_group_egress_rule" "sg_jenkins_controller_egress" {
 
 resource "aws_security_group" "sg_ecs_jenkins_agent" {
   name   = "ecs-jenkins-agents-sg"
-  vpc_id = var.vpc_id
+  vpc_id = aws_vpc.main_vpc.id
 
   tags = merge(
     local.tags,

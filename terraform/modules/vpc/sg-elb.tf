@@ -4,7 +4,7 @@
 resource "aws_security_group" "public_sg" {
   name        = "public-lb-sg"
   description = "Security Group for LB to traffic for ECS Cluster"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main_vpc.id
 
   tags = merge(
     local.tags,
