@@ -35,6 +35,7 @@ jobs:
     with:
       working_directory: './terraform/environment/'
       tf_version: '1.12.2'
+      cloud_provider: 'aws'
     secrets:
       AWS_ASSUME_ROLE: ${{ secrets.AWS_ASSUME_ROLE }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
